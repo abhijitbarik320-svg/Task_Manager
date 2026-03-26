@@ -1,11 +1,11 @@
-FROM maven:3.9.6-eclipse-temurin-17
+FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
 COPY . .
 
-RUN mvn clean package -DskipTests
+RUN chmod +x mvnw
 
-EXPOSE 8080
+RUN ./mvnw clean package -DskipTests
 
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "target/Task_Manager-0.0.1-SNAPSHOT.jar"]
